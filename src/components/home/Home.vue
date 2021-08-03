@@ -20,6 +20,12 @@
                         :url="foto.url"
                         :titulo="foto.titulo"
                     ></imagem-responsiva>
+
+                    <meu-botao
+                        :tipo="button"
+                        rotulo="REMOVER"
+                        @botaoAtivado="remove(foto)"
+                    />
                 </meu-painel>
             </li>
         </ul>
@@ -29,6 +35,7 @@
 <script>
 import Painel from "../shared/painel/Painel.vue";
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
+import Botao from "../shared/botao.vue/Botao.vue";
 
 export default {
     name: "Home",
@@ -36,6 +43,7 @@ export default {
     components: {
         "meu-painel": Painel,
         "imagem-responsiva": ImagemResponsiva,
+        "meu-botao": Botao,
     },
 
     data() {
@@ -54,6 +62,12 @@ export default {
             } else {
                 return this.fotos;
             }
+        },
+    },
+
+    methods: {
+        remove(foto) {
+            alert("Remover a foto! " + foto.titulo);
         },
     },
 
