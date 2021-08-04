@@ -24,6 +24,8 @@
                     <meu-botao
                         :tipo="button"
                         rotulo="REMOVER"
+                        :confirmacao="false"
+                        estilo="perigo"
                         @botaoAtivado="remove(foto)"
                     />
                 </meu-painel>
