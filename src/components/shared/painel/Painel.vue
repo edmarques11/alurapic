@@ -60,6 +60,10 @@ export default {
 
 .painel-fade-active,
 .painel-fade-leave-active {
-    transition: opacity .4s;
+    transition: opacity 0.4s;
+}
+
+.painel-conteudo {
+    overflow: hidden;
 }
 </style>

@@ -19,10 +19,11 @@
                     <imagem-responsiva
                         :url="foto.url"
                         :titulo="foto.titulo"
+                        v-meu-transform:scale.animate="1.1"
                     ></imagem-responsiva>
 
                     <meu-botao
-                        :tipo="button"
+                        tipo="button"
                         rotulo="REMOVER"
                         :confirmacao="false"
                         estilo="perigo"
@@ -38,6 +39,7 @@
 import Painel from "../shared/painel/Painel.vue";
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
 import Botao from "../shared/botao.vue/Botao.vue";
+import transform from "../../directives/Transform";
 
 export default {
     name: "Home",
@@ -46,6 +48,10 @@ export default {
         "meu-painel": Painel,
         "imagem-responsiva": ImagemResponsiva,
         "meu-botao": Botao,
+    },
+
+    directives: {
+        "meu-transform": transform,
     },
 
     data() {
