@@ -38,7 +38,7 @@
 <script>
 import Painel from "../shared/painel/Painel.vue";
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
-import Botao from "../shared/botao.vue/Botao.vue";
+import Botao from "../shared/botao/Botao.vue";
 import transform from "../../directives/Transform";
 
 export default {
