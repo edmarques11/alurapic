@@ -2,6 +2,8 @@
     <div>
         <h1 class="centralizado">{{ titulo }}</h1>
 
+        <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
+
         <input
             type="search"
             class="filtro"
@@ -40,6 +42,7 @@ import Painel from "../shared/painel/Painel.vue";
 import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
 import Botao from "../shared/botao/Botao.vue";
 import transform from "../../directives/Transform";
+import FotoService from "../../domain/foto/FotoService.js";
 
 export default {
     name: "Home",
@@ -59,6 +62,7 @@ export default {
             titulo: "Alura PIC",
             fotos: [],
             filtro: "",
+            mensagem: "",
         };
     },
 
@@ -75,18 +79,27 @@ export default {
 
     methods: {
         remove(foto) {
-            alert("Remover a foto! " + foto.titulo);
+            this.service.apaga(foto._id).then(
+                () => {
+                    let indiceFoto = this.fotos.indexOf(foto);
+                    this.fotos.splice(indiceFoto, 1);
+                    this.mensagem = "Foto removida com sucesso";
+                },
+                (err) => {
+                    console.error(err);
+                    this.mensagem = "Não foi possível remover a foto";
+                }
+            );
         },
     },
 
     created() {
-        this.$http
-            .get("http://localhost:3000/v1/fotos")
-            .then((response) => response.json())
-            .then(
-                (fotos) => (this.fotos = fotos),
-                (error) => console.log(error)
-            );
+        this.service = new FotoService(this.$resource);
+
+        this.service.lista().then(
+            (fotos) => (this.fotos = fotos),
+            (error) => console.log(error)
+        );
     },
 };
 </script>
